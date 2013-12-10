@@ -1,0 +1,50 @@
+﻿@model DistManagment.order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>order</legend>
+
+   <div class="display-label">
+        Order Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.order_name)
+    </div>
+
+    <div class="display-label">
+         Order Delivered  To
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.deliver_to)
+    </div>
+
+    <div class="display-label">
+         Delivery Date
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.deliver_date)
+    </div>
+
+    <div class="display-label">
+         Quantity
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.qty)
+    </div>
+
+    <div class="display-label">
+        Status
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,69 @@
+﻿@model DistManagment.order
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>order</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+           Order Name
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.order_name)
+            @Html.ValidationMessageFor(model => model.order_name)
+        </div>
+
+        <div class="editor-label">
+          Order Delivered  To
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.deliver_to)
+            @Html.ValidationMessageFor(model => model.deliver_to)
+        </div>
+
+        <div class="editor-label">
+           Delivery Date
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.deliver_date)
+            @Html.ValidationMessageFor(model => model.deliver_date)
+        </div>
+
+        <div class="editor-label">
+            Quantity
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.qty)
+            @Html.ValidationMessageFor(model => model.qty)
+        </div>
+
+        <div class="editor-label">
+            Delivered
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.status)
+            @Html.ValidationMessageFor(model => model.status)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

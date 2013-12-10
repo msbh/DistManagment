@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+               
+            </p>
+        </div>
+    </section>
+}
+<h3>We suggest the following:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>Product Available in Warehouse</h5>
+        @ViewBag.productcount 
+    </li>
+
+    <li class="two">
+        <h5>Order In Process</h5>
+            @ViewBag.ordercount 
+    </li>
+
+    <li class="three">
+        <h5>Agents Having Order To Deliver</h5>
+            @ViewBag.agentsorder            
+    </li>    
+    <li class="four">
+        <h5>Order Delivered</h5>
+            @ViewBag.deliveredorder
+    </li>
+</ol>

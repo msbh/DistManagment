@@ -1,0 +1,29 @@
+﻿@model DistManagment.order_agent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>order_agent</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.order.order_name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.order.order_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.user.username)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.user.username)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

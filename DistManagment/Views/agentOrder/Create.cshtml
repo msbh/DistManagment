@@ -1,0 +1,43 @@
+﻿@model DistManagment.order_agent
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>order_agent</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.order_id, "order")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("order_id", String.Empty)
+            @Html.ValidationMessageFor(model => model.order_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.user_id, "user")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("user_id", String.Empty)
+            @Html.ValidationMessageFor(model => model.user_id)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

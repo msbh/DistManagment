@@ -1,0 +1,64 @@
+﻿@model DistManagment.products
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>products</legend>
+
+    <div class="display-label">
+        Product Name
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.product_name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.stock)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.stock)
+    </div>
+
+    <div class="display-label">
+   Is Stock?
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isStock)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.barcode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.barcode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.upc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.upc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.weight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.weight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.type)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.type)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

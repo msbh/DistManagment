@@ -1,0 +1,20 @@
+﻿@try
+{
+    if (Session["userid"].ToString() != "")
+    {
+    <text>
+        Hello,
+ @Html.ActionLink("Log Off", "LogoffUser", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </text>
+    }
+    else
+    {
+    <ul>        
+        <li>@Html.ActionLink("Log in", "LoginUser", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+    }
+}
+catch (Exception ty) { 
+    <ul>        
+        <li>@Html.ActionLink("Log in", "LoginUser", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>}

@@ -1,0 +1,51 @@
+﻿@model DistManagment.order_product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Order Products</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.order_id, "order")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("order_id", String.Empty)
+            @Html.ValidationMessageFor(model => model.order_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.product_id, "product")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("product_id", String.Empty)
+            @Html.ValidationMessageFor(model => model.product_id)
+        </div>
+        <div class="editor-label">
+           Quantity
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.qty)
+            @Html.ValidationMessageFor(model => model.qty)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
