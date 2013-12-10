@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DistManModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DistManModelStoreContainer">
+          <EntitySet Name="order" EntityType="DistManModel.Store.order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="order_agent" EntityType="DistManModel.Store.order_agent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="order_product" EntityType="DistManModel.Store.order_product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="products" EntityType="DistManModel.Store.products" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="users" EntityType="DistManModel.Store.users" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="deliver_to" Type="nvarchar" MaxLength="50" />
+          <Property Name="deliver_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="qty" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="order_agent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="order_product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="stock" Type="int" />
+          <Property Name="isStock" Type="bit" />
+          <Property Name="barcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="upc" Type="nvarchar" MaxLength="50" />
+          <Property Name="weight" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="created_date" Type="nvarchar" MaxLength="50" />
+          <Property Name="isAdmin" Type="bit" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DistManModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DistManEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="order" EntityType="DistManModel.order" />
+          <EntitySet Name="order_agent" EntityType="DistManModel.order_agent" />
+          <EntitySet Name="order_product" EntityType="DistManModel.order_product" />
+          <EntitySet Name="products" EntityType="DistManModel.products" />
+          <AssociationSet Name="orderorder_product" Association="DistManModel.orderorder_product">
+            <End Role="order" EntitySet="order" />
+            <End Role="order_product" EntitySet="order_product" />
+          </AssociationSet>
+          <AssociationSet Name="productsorder_product" Association="DistManModel.productsorder_product">
+            <End Role="products" EntitySet="products" />
+            <End Role="order_product" EntitySet="order_product" />
+          </AssociationSet>
+          <EntitySet Name="users" EntityType="DistManModel.user" />
+          <AssociationSet Name="userorder_agent" Association="DistManModel.userorder_agent">
+            <End Role="user" EntitySet="users" />
+            <End Role="order_agent" EntitySet="order_agent" />
+          </AssociationSet>
+          <AssociationSet Name="orderorder_agent" Association="DistManModel.orderorder_agent">
+            <End Role="order" EntitySet="order" />
+            <End Role="order_agent" EntitySet="order_agent" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="order_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="deliver_to" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="deliver_date" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="qty" Type="Int32" />
+          <NavigationProperty Name="order_product" Relationship="DistManModel.orderorder_product" FromRole="order" ToRole="order_product" />
+          <Property Type="Boolean" Name="status" />
+          <NavigationProperty Name="order_agent" Relationship="DistManModel.orderorder_agent" FromRole="order" ToRole="order_agent" />
+        </EntityType>
+        <EntityType Name="order_agent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="user" Relationship="DistManModel.userorder_agent" FromRole="order_agent" ToRole="user" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <NavigationProperty Name="order" Relationship="DistManModel.orderorder_agent" FromRole="order_agent" ToRole="order" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="order" Relationship="DistManModel.orderorder_product" FromRole="order_product" ToRole="order" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="DistManModel.productsorder_product" FromRole="order_product" ToRole="products" />
+          <Property Type="Int32" Name="product_id" Nullable="false" />
+          <Property Type="Int32" Name="qty" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="stock" Type="Int32" />
+          <Property Name="isStock" Type="Boolean" DefaultValue="True" Nullable="false" />
+          <Property Name="barcode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="upc" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="weight" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="order_product" Relationship="DistManModel.productsorder_product" FromRole="products" ToRole="order_product" />
+        </EntityType>
+        <Association Name="orderorder_product">
+          <End Type="DistManModel.order" Role="order" Multiplicity="1" />
+          <End Type="DistManModel.order_product" Role="order_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_product">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productsorder_product">
+          <End Type="DistManModel.products" Role="products" Multiplicity="1" />
+          <End Type="DistManModel.order_product" Role="order_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_product">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="username" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="password" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="created_date" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="isAdmin" DefaultValue="false" Nullable="false" />
+          <NavigationProperty Name="order_agent" Relationship="DistManModel.userorder_agent" FromRole="user" ToRole="order_agent" />
+        </EntityType>
+        <Association Name="userorder_agent">
+          <End Type="DistManModel.user" Role="user" Multiplicity="1" />
+          <End Type="DistManModel.order_agent" Role="order_agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_agent">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderorder_agent">
+          <End Type="DistManModel.order" Role="order" Multiplicity="1" />
+          <End Type="DistManModel.order_agent" Role="order_agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="order_agent">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DistManModelStoreContainer" CdmEntityContainer="DistManEntities">
+          <EntitySetMapping Name="order">
+            <EntityTypeMapping TypeName="DistManModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_name" ColumnName="order_name" />
+                <ScalarProperty Name="deliver_to" ColumnName="deliver_to" />
+                <ScalarProperty Name="deliver_date" ColumnName="deliver_date" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_agent">
+            <EntityTypeMapping TypeName="DistManModel.order_agent">
+              <MappingFragment StoreEntitySet="order_agent">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_product">
+            <EntityTypeMapping TypeName="DistManModel.order_product">
+              <MappingFragment StoreEntitySet="order_product">
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="DistManModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="isStock" ColumnName="isStock" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="upc" ColumnName="upc" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DistManModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

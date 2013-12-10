@@ -1,0 +1,36 @@
+﻿@model DistManagment.user
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>users</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.username)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.username)
+    </div>
+
+    <div class="display-label">
+        Creation date
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.created_date)
+    </div>
+
+    <div class="display-label">
+        Is Administrator
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.isAdmin)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
